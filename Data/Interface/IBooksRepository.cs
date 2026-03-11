@@ -13,7 +13,7 @@ namespace Data.Interface
     {
         Task<BooksModel> CreateBook(CreateBookDTO createBookDTO);
         Task<BooksModel> UpdateBook(EditBookDTO editBookDTO);
-        Task<BooksPaginatedModel> GetBooksPaged(BasePaginationDTO paginationDTO);
+        Task<IEnumerable<BooksPaginatedModel>> GetBooksPaged(BasePaginationDTO paginationDTO);
         Task<BooksModel> ToggleIsActiveBook(Guid Id);
     }
 }

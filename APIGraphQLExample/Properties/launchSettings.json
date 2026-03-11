@@ -23,20 +23,21 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7056;http://localhost:5055",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "launchUrl": "graphiql",
+      "applicationUrl": "https://localhost:5098;http://localhost:5055",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "CONNECTION_STRING": "Server=localhost;Port=5432;Database=bibliotecagraphql;User Id=postgres;Password=uts2022;"
+        }
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONNECTION_STRING": "Server=127.0.0.1;Port=5432;Database=BibliotecaGraphQL;User Id=postgres;Password=uts2022;"
-      }
+      "launchUrl": "graphiql",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "CONNECTION_STRING": "Server=localhost;Port=5432;Database=bibliotecagraphql;User Id=postgres;Password=uts2022;"
+        }
     }
   }
 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GraphQL.AspNet.Attributes;
 
 namespace Data.DTOs.Pagination
 {
+    [GraphType("basePaginationDTO")]
     public class BasePaginationDTO
     {
         public int Page {  get; set; }
