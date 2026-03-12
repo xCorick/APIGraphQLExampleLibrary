@@ -116,14 +116,90 @@ namespace Data.Repository
             //throw new NotImplementedException();
         }
 
-        public Task<BooksModel> ToggleIsActiveBook(Guid Id)
+        public async Task<BooksModel> ToggleIsActiveBook(Guid Id)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "select * from toggle_is_active_book(" +
+                "p_id_book := @Id);";
+
+            try
+            {
+                using (var conn = DbConnection())
+                {
+                    conn.Open();
+                    using var command = conn.CreateCommand();
+                    command.CommandText = sqlQuery;
+                    command.CommandType = CommandType.Text;
+
+                    command.Parameters.AddWithValue("@Id", Id);
+
+                    using var reader = await command.ExecuteReaderAsync();
+
+                    if (await reader.ReadAsync())
+                    {
+                        return new BooksModel
+                        {
+                            Id = reader.GetGuid(reader.GetOrdinal("id_book")),
+                            Title = reader.GetString(reader.GetOrdinal("title")),
+                            Price = reader.GetDecimal(reader.GetOrdinal("price")),
+                            Id_Author = reader.GetGuid(reader.GetOrdinal("id_author")),
+                            Created_At = reader.GetDateTime(reader.GetOrdinal("created_at")),
+                            Updated_At = reader.GetDateTime(reader.GetOrdinal("updated_at"))
+                        };
+                    }
+                    conn.Close();
+                    return new BooksModel { };
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw new NpgsqlException(ex.Message, ex);
+            }
+            //throw new NotImplementedException();
         }
 
-        public Task<BooksModel> UpdateBook(EditBookDTO editBookDTO)
+        public async Task<BooksModel> UpdateBook(EditBookDTO editBookDTO)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "select * from edit_book(" +
+                "p_id_book := @Id_Book," +
+                "p_title := @Title," +
+                "p_price := @Price," +
+                "p_id_author := @Id_Author);";
+            try
+            {
+                using (var conn = DbConnection())
+                {
+                    conn.Open();
+                    using var command = conn.CreateCommand();
+                    command.CommandText = sqlQuery;
+                    command.CommandType = CommandType.Text;
+
+                    command.Parameters.AddWithValue("@Id_Book", editBookDTO.Id_Book);
+                    command.Parameters.AddWithValue("@Title", editBookDTO.Title!);
+                    command.Parameters.AddWithValue("@Price", editBookDTO.Price);
+                    command.Parameters.AddWithValue("@Id_Author", editBookDTO.Id_Author!);
+
+                    using var reader = await command.ExecuteReaderAsync();
+
+                    if (await reader.ReadAsync())
+                    {
+                        return new BooksModel
+                        {
+                            Id = reader.GetGuid(reader.GetOrdinal("id_book")),
+                            Title = reader.GetString(reader.GetOrdinal("title")),
+                            Price = reader.GetDecimal(reader.GetOrdinal("price")),
+                            Id_Author = reader.GetGuid(reader.GetOrdinal("id_author")),
+                            Created_At = reader.GetDateTime(reader.GetOrdinal("created_at")),
+                            Updated_At = reader.GetDateTime(reader.GetOrdinal("updated_at"))
+                        };
+                    }
+                    conn.Close();
+                    return new BooksModel { };
+                }
+
+            } catch (NpgsqlException ex)
+            {
+                throw new NpgsqlException(ex.Message, ex);
+            }
         }
     }
 }

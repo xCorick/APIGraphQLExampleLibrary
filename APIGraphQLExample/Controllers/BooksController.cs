@@ -28,5 +28,19 @@ namespace APIGraphQLExample.Controllers
             var result = await _booksRepository.CreateBook(createBookDTO);
             return Ok(result);
         }
+
+        [Mutation("updateBook", typeof(BooksModel))]
+        public async Task<IGraphActionResult> UpdateBook([FromGraphQL("updateBook")] EditBookDTO editBookDTO)
+        {
+            var result = await _booksRepository.UpdateBook(editBookDTO);
+            return Ok(result);
+        }
+
+        [Mutation("ToggleBook", typeof(BooksModel))]
+        public async Task<IGraphActionResult> ToggleIsActiveBook([FromGraphQL("toggleBook")] Guid id)
+        {
+            var result = await _booksRepository.ToggleIsActiveBook(id);
+            return Ok(result);
+        }
     }
 }
