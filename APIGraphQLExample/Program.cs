@@ -17,6 +17,7 @@ var postgresConnection = new PostgresConnection(Environment.GetEnvironmentVariab
 builder.Services.AddSingleton(postgresConnection);
 
 builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+builder.Services.AddScoped<IAuthorsRepository, AuthorsRepository>();
 
 builder.Services.AddGraphQL();
 

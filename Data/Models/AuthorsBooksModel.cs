@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GraphQL.AspNet.Attributes;
 
 namespace Data.Models
 {
+    [GraphType("authorsBooks")]
     public class AuthorsBooksModel
     {
         public Guid Id_Author { get; set; }

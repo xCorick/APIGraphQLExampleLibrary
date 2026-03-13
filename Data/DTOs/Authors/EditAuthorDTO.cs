@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GraphQL.AspNet.Attributes;
 
 namespace Data.DTOs.Authors
 {
+    [GraphType("updateAuthor")]
     public class EditAuthorDTO
     {
         [Required(ErrorMessage = "There is no Id here, you need one")]

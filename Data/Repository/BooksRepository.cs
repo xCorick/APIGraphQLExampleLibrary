@@ -143,7 +143,8 @@ namespace Data.Repository
                             Price = reader.GetDecimal(reader.GetOrdinal("price")),
                             Id_Author = reader.GetGuid(reader.GetOrdinal("id_author")),
                             Created_At = reader.GetDateTime(reader.GetOrdinal("created_at")),
-                            Updated_At = reader.GetDateTime(reader.GetOrdinal("updated_at"))
+                            Updated_At = reader.GetDateTime(reader.GetOrdinal("updated_at")),
+                            Is_Active = reader.GetBoolean(reader.GetOrdinal("is_active"))
                         };
                     }
                     conn.Close();
